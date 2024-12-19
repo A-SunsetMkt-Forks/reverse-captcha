@@ -1,2 +1,36 @@
-# reverse-captcha
-A reversed CAPTCHA that proves you're a robot by recognizing AprilTag sequences
+# 反向验证码
+
+一个反向验证码，通过识别 AprilTag 序列来证明你是一个机器人。
+
+## 项目简介
+
+反向验证码是一种创新的验证系统，其目的是通过识别 AprilTag 序列来验证用户是否为机器人。与传统验证码不同，反向验证码要求用户证明自己是机器人。
+
+## 功能特点
+
+- **AprilTag 验证**：从本地的 `tag25h9` 文件夹中随机选择四个 AprilTag 图像进行展示。
+- **用户输入验证**：用户需按顺序输入显示的 AprilTag 序号。
+- **验证反馈**：
+  - 验证成功时，页面会显示烟花效果，并将图标变为绿色。
+  - 验证失败时，页面会显示错误信息，并将图标变为红色。
+- **刷新功能**：提供刷新按钮以更换新的 AprilTag 序列。
+
+## 使用技术
+
+- HTML5 和 CSS3：用于页面结构和样式。
+- JavaScript：实现验证码逻辑和用户交互。
+- Fireworks.js：用于验证成功时的烟花效果。
+
+## 如何运行
+
+1. 克隆此仓库到本地。
+2. 确保项目目录中包含必要的 AprilTag 图像。
+3. 在浏览器中打开 `index.html` 文件。
+
+## 贡献
+
+欢迎对本项目提出建议和贡献代码。请通过 GitHub 提交 issue 或 pull request。
+
+## 许可证
+
+本项目采用 MIT 许可证，详情请参阅 LICENSE 文件。
