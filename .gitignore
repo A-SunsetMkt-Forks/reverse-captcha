@@ -1,0 +1,23 @@
+# Ignore system files
+.DS_Store
+
+# Ignore Python cache files
+__pycache__/
+*.py[cod]
+
+# Ignore virtual environments
+venv/
+
+# Ignore other common files
+*.log
+*.tmp
+*.bak
+
+# Ignore local environment settings
+.env
+
+# Ignore node_modules
+node_modules/
+
+# Ignore any other files you need
+# Add more patterns as needed

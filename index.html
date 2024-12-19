@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href='https://chinese-fonts-cdn.deno.dev/packages/mzxst/dist/MZPXorig/result.css' />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <title>机器人验证</title>
     <style>
         :root {
@@ -198,7 +199,7 @@
         <div class="header">
             <div class="title-wrapper">
                 <div class="robot-icon"></div>
-                <div class="title">我是机器人验证</div>
+                <div class="title">机器人验证</div>
             </div>
             <button class="refresh-button">看不清楚</button>
         </div>
@@ -237,6 +238,7 @@
         const verifyButton = document.querySelector('.verify-button');
         const tagFolder = 'tag25h9';
         const tagCount = 4;
+        const robotIcon = document.querySelector('.robot-icon');
 
         function getRandomTags() {
             const tags = Array.from({ length: 30 }, (_, i) => i + 1); // Assuming 30 tags
@@ -309,10 +311,12 @@
             if (success) {
                 message.textContent = "验证成功！您已证明自己是机器人！";
                 message.style.color = '#5f6368';
+                robotIcon.style.backgroundColor = 'green';
                 showFireworks();
             } else {
                 message.textContent = "验证失败！您可能是人类！请重试。";
                 message.style.color = 'red';
+                robotIcon.style.backgroundColor = 'red';
             }
         }
 
@@ -332,6 +336,7 @@
             displayTags(currentTags);
             message.textContent = "请证明您是机器人";
             message.style.color = '#5f6368';
+            robotIcon.style.backgroundColor = 'var(--primary-black)';
         });
     </script>
 </body>
