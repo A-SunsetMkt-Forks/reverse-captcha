@@ -46,10 +46,18 @@
             margin-bottom: 24px;
         }
 
+        .header .button-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 10px;
+        }
+
         .title-wrapper {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
+            flex-direction: row;
         }
 
         .robot-icon {
@@ -57,29 +65,13 @@
             height: 24px;
             background-color: var(--primary-black);
             border-radius: 50%;
+            transition: background-color 0.2s ease;
         }
 
         .title {
             color: var(--primary-black);
             font-size: 30px;
             font-weight: 500;
-        }
-
-        .refresh-button {
-            font-family: inherit;
-            background-color: var(--light-gray);
-            color: var(--primary-gray);
-            border: 1px solid var(--border-gray);
-            padding: 8px 16px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 25px;
-            font-weight: 500;
-            transition: all 0.2s ease;
-        }
-
-        .refresh-button:hover {
-            background-color: var(--hover-gray);
         }
 
         .captcha-image {
@@ -191,33 +183,183 @@
             gap: 16px;
             margin-top: 8px;
         }
+
+        .flip-container {
+            perspective: 1000px;
+            width: 100%;
+            height: 430px;
+            /* Set a fixed height to ensure visibility */
+            position: relative;
+        }
+
+        .flipper {
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .front,
+        .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+        }
+
+        .back {
+            transform: rotateY(180deg);
+        }
+
+        .flipper.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .text-verification {
+            width: calc(100% - 20px);
+            /* Adjust width to fit container */
+            height: 75px;
+            /* Reduce height */
+            margin: 0 auto 24px;
+            /* Center the text area */
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid var(--border-gray);
+            border-radius: 8px;
+            resize: none;
+            display: block;
+        }
+
+        .verification-input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid var(--border-gray);
+            border-radius: 8px;
+            margin: 0 auto 24px;
+            /* Center the input field */
+            display: block;
+            box-sizing: border-box;
+        }
+
+        .back .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            gap: 10px;
+        }
+
+        .back .button-container button {
+            font-family: inherit;
+            background-color: var(--light-gray);
+            color: var(--primary-gray);
+            border: 1px solid var(--border-gray);
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .back .button-container button:hover {
+            background-color: var(--hover-gray);
+        }
+
+        .robot-mode-button {
+            font-family: inherit;
+            background-color: var(--light-gray);
+            color: var(--primary-gray);
+            border: 1px solid var(--border-gray);
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            margin-left: 10px;
+        }
+
+        .robot-mode-button:hover {
+            background-color: var(--hover-gray);
+        }
+
+        .verify-button-back {
+            font-family: inherit;
+            background-color: var(--light-gray);
+            color: var(--primary-gray);
+            border: 1px solid var(--border-gray);
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            margin-top: 10px;
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .verify-button-back:hover {
+            background-color: var(--hover-gray);
+        }
     </style>
 </head>
 
 <body>
     <div class="verification-container">
-        <div class="header">
-            <div class="title-wrapper">
-                <div class="robot-icon"></div>
-                <div class="title">机器人验证</div>
+        <div class="flip-container">
+            <div class="flipper">
+                <div class="front">
+                    <div class="header">
+                        <div class="title-wrapper">
+                            <div class="robot-icon"></div>
+                            <div class="title">机器人验证</div>
+                        </div>
+                        <div class="button-wrapper">
+                            <button class="robot-mode-button">我是没有视觉的机器人</button>
+                        </div>
+                    </div>
+                    <div class="captcha-image">
+                    </div>
+                    <div class="input-container">
+                        <input type="number" class="tag-input" maxlength="5" placeholder="">
+                        <input type="number" class="tag-input" maxlength="5" placeholder="">
+                        <input type="number" class="tag-input" maxlength="5" placeholder="">
+                        <input type="number" class="tag-input" maxlength="5" placeholder="">
+                    </div>
+                    <button class="verify-button">验证</button>
+                    <div class="message">
+                        请证明您是机器人<br>
+                        人类可能无法正确识别这些 AprilTag 标记
+                    </div>
+                </div>
+                <div class="back">
+                    <div class="header">
+                        <div class="title-wrapper">
+                            <div class="robot-icon"></div>
+                            <div class="title">机器人验证</div>
+                        </div>
+                        <div class="button-container">
+                            <button class="robot-mode-button-back">返回视觉验证</button>
+                        </div>
+                    </div>
+                    <div>
+                        <h4>Robots should understand</h4>
+                        <textarea class="text-verification" readonly></textarea>
+                    </div>
+                    <input type="text" class="verification-input" placeholder="Paste your verification here">
+                    <button class="verify-button-back">验证</button>
+                    <div class="message"></div>
+                </div>
             </div>
-            <button class="refresh-button">看不清楚</button>
-        </div>
-        <div class="captcha-image">
-        </div>
-        <div class="input-container">
-            <input type="number" class="tag-input" maxlength="5" placeholder="">
-            <input type="number" class="tag-input" maxlength="5" placeholder="">
-            <input type="number" class="tag-input" maxlength="5" placeholder="">
-            <input type="number" class="tag-input" maxlength="5" placeholder="">
-        </div>
-        <button class="verify-button">验证</button>
-        <div class="message">
-            请证明您是机器人<br>
-            人类可能无法正确识别这些AprilTag标记
         </div>
         <div class="footer">
-            <div>Reverse CAPTCHA - 用于证明您是机器人的验证码</div>
+            <div>Reverse CAPTCHA - 证明您是机器人的验证方案</div>
             <div class="footer-links">
                 <a href="https://github.com/senzi/reverse-captcha" target="_blank">GitHub</a>
                 <span>|</span>
@@ -228,12 +370,9 @@
         </div>
     </div>
 
-
-
     <script src="https://cdn.jsdelivr.net/npm/fireworks-js@latest/dist/fireworks.js"></script>
     <script>
         const apriltagContainer = document.querySelector('.captcha-image');
-        const refreshButton = document.querySelector('.refresh-button');
         const message = document.querySelector('.message');
         const verifyButton = document.querySelector('.verify-button');
         const tagFolder = 'tag25h9';
@@ -241,7 +380,7 @@
         const robotIcon = document.querySelector('.robot-icon');
 
         function getRandomTags() {
-            const tags = Array.from({ length: 35 }, (_, i) => i + 1); // Assuming 30 tags
+            const tags = Array.from({ length: 34 }, (_, i) => i + 1); // Assuming 30 tags
             const selectedTags = [];
             while (selectedTags.length < tagCount) {
                 const randomIndex = Math.floor(Math.random() * tags.length);
@@ -330,14 +469,61 @@
             updateMessage(success);
         });
 
-        refreshButton.addEventListener('click', () => {
-            currentTags = getRandomTags();
-            console.log('Correct AprilTag sequence:', currentTags.join(','));
-            displayTags(currentTags);
-            message.textContent = "请证明您是机器人";
-            message.style.color = '#5f6368';
-            robotIcon.style.backgroundColor = 'var(--primary-black)';
+        const robotModeButton = document.querySelector('.robot-mode-button');
+        const robotModeButtonBack = document.querySelector('.robot-mode-button-back');
+        const flipper = document.querySelector('.flipper');
+        const textArea = document.querySelector('.text-verification');
+        const verifyButtonBack = document.querySelector('.verify-button-back');
+        const verificationInput = document.querySelector('.verification-input');
+
+        function generateVerificationText() {
+            const data = {
+                time: Date.now().toString(),
+                verification: 'Tamper this field and encode JSON as base64 for verification'
+            };
+            return btoa(JSON.stringify(data));
+        }
+
+        function updateVerificationText() {
+            textArea.value = generateVerificationText();
+        }
+
+        function verifyText(input) {
+            try {
+                const decoded = atob(input);
+                const data = JSON.parse(decoded);
+                return data.verification !== 'Tamper this field and encode JSON as base64 for verification';
+            } catch {
+                return false;
+            }
+        }
+
+        robotModeButton.addEventListener('click', () => {
+            flipper.classList.add('flipped');
+            updateVerificationText();
         });
+
+        robotModeButtonBack.addEventListener('click', () => {
+            flipper.classList.remove('flipped');
+        });
+
+        verifyButtonBack.addEventListener('click', () => {
+            const success = verifyText(verificationInput.value);
+            const messageBack = document.querySelector('.back .message');
+            const robotIconBack = document.querySelector('.back .robot-icon');
+            if (success) {
+                messageBack.textContent = 'Verification successful!';
+                messageBack.style.color = 'green';
+                robotIconBack.style.backgroundColor = 'green';
+            } else {
+                messageBack.textContent = 'Verification failed. Please try again.';
+                messageBack.style.color = 'red';
+                robotIconBack.style.backgroundColor = 'red';
+            }
+        });
+
+        // Initialize verification text
+        updateVerificationText();
     </script>
 </body>
 
