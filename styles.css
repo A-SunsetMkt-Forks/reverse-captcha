@@ -61,6 +61,12 @@ body {
     display: block;
 }
 
+.back-content h4 {
+    margin: 0 0 10px 0;
+    font-size: 20px;
+    color: var(--primary-black);
+}
+
 .header {
     display: flex;
     justify-content: space-between;
@@ -212,6 +218,27 @@ body {
     margin-top: 8px;
 }
 
+/* 移动端响应式样式 */
+@media screen and (max-width: 480px) {
+    .footer-links .full-text {
+        display: none;
+    }
+    
+    .footer-links .short-text {
+        display: inline;
+    }
+}
+
+@media screen and (min-width: 481px) {
+    .footer-links .full-text {
+        display: inline;
+    }
+    
+    .footer-links .short-text {
+        display: none;
+    }
+}
+
 .flip-container {
     -webkit-perspective: 1000px;
     -moz-perspective: 1000px;
@@ -250,29 +277,42 @@ body {
 
 .text-verification {
     width: calc(100% - 20px);
-    /* Adjust width to fit container */
     height: 75px;
-    /* Reduce height */
     margin: 0 auto 24px;
-    /* Center the text area */
-    padding: 10px;
-    font-size: 14px;
+    padding: 16px;
+    font-family: inherit;
+    font-size: 16px;
+    line-height: 1.5;
     border: 1px solid var(--border-gray);
     border-radius: 8px;
     resize: none;
+    overflow-y: scroll;
+    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
     display: block;
+}
+
+/* Chrome, Safari and Opera */
+.text-verification::-webkit-scrollbar {
+    display: none;
 }
 
 .verification-input {
     width: calc(100% - 20px);
-    padding: 10px;
+    height: 85px;
+    padding: 16px;
     font-size: 16px;
+    line-height: 75px;
     border: 1px solid var(--border-gray);
     border-radius: 8px;
     margin: 0 auto 24px;
-    /* Center the input field */
     display: block;
     box-sizing: border-box;
+}
+
+.verification-input::placeholder {
+    line-height: 75px;
+    text-align: center;
 }
 
 .back .button-container {
@@ -339,21 +379,21 @@ body {
 
 .verify-button-back {
     font-family: inherit;
-    background-color: var(--light-gray);
-    color: var(--primary-gray);
-    border: 1px solid var(--border-gray);
-    padding: 8px 16px;
-    border-radius: 6px;
+    background-color: var(--primary-black);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 16px;
-    font-weight: 500;
-    transition: all 0.2s ease;
-    margin-top: 10px;
-    display: block;
     width: 100%;
+    font-weight: 500;
+    font-size: 20px;
+    transition: background-color 0.2s ease;
+    margin: 24px 0 0 0;
+    display: block;
     box-sizing: border-box;
 }
 
 .verify-button-back:hover {
-    background-color: var(--hover-gray);
+    background-color: #000000;
 }
