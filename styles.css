@@ -1,0 +1,359 @@
+:root {
+    --primary-black: #202124;
+    --primary-gray: #5f6368;
+    --light-gray: #f8f9fa;
+    --border-gray: #e0e0e0;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --hover-gray: #eeeeee;
+}
+
+body {
+    font-family: 'MuzaiPixel', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    display: flex;
+    font-size: 30px;
+    font-weight: '400';
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f5f5f5;
+}
+
+.verification-container {
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px var(--shadow-color);
+    max-width: 400px;
+    width: 90%;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 自定义动画持续时间 */
+.animate__animated {
+    --animate-duration: 0.5s;
+}
+
+.content-wrapper {
+    position: relative;
+    width: 100%;
+    height: 430px;
+}
+
+.content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+
+.front-content {
+    z-index: 2;
+}
+
+.back-content {
+    z-index: 1;
+    display: none;
+}
+
+.back-content.show {
+    display: block;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.header .button-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.title-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-direction: row;
+}
+
+.robot-icon {
+    width: 24px;
+    height: 24px;
+    background-color: var(--primary-black);
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+}
+
+.title {
+    color: var(--primary-black);
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.captcha-image {
+    width: 100%;
+    height: 150px;
+    background: linear-gradient(to right, white, #fdfdfd);
+    /* 极其轻微的渐变 */
+    margin-bottom: 24px;
+    border: 1px solid var(--border-gray);
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.apriltag {
+    width: 80px;
+    height: 80px;
+    background-color: var(--primary-black);
+    margin: 0 5px;
+    border-radius: 4px;
+    /* 可选：添加轻微圆角 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* 可选：添加轻微阴影 */
+}
+
+.input-container {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.tag-input {
+    -moz-appearance: textfield;
+    -webkit-appearance: none;
+    appearance: none;
+    font-size: 25px;
+    width: 50px;
+    height: 50px;
+    padding: 5px;
+    border: 2px solid var(--border-gray);
+    border-radius: 8px;
+    text-align: center;
+    transition: border-color 0.2s ease;
+}
+
+/* 移除Chrome/Safari的上下箭头 */
+.tag-input::-webkit-inner-spin-button,
+.tag-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* 移除Firefox的上下箭头 */
+.tag-input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.tag-input:focus {
+    outline: none;
+    border-color: var(--primary-black);
+}
+
+.verify-button {
+    font-family: inherit;
+    background-color: var(--primary-black);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    font-weight: 500;
+    font-size: 20px;
+    transition: background-color 0.2s ease;
+}
+
+.verify-button:hover {
+    background-color: #000000;
+}
+
+.message {
+    font-size: 20px;
+    color: var(--primary-gray);
+    margin-top: 16px;
+    text-align: center;
+    line-height: 1.5;
+}
+
+.footer {
+    margin-top: 20px;
+    padding: 16px;
+    border-top: 1px solid var(--border-gray);
+    color: var(--primary-gray);
+    font-size: 18px;
+    text-align: center;
+}
+
+.footer a {
+    color: var(--primary-gray);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer a:hover {
+    color: var(--primary-black);
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 8px;
+}
+
+.flip-container {
+    -webkit-perspective: 1000px;
+    -moz-perspective: 1000px;
+    perspective: 1000px;
+    width: 100%;
+    height: 430px;
+    position: relative;
+}
+
+.flipper {
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
+.front,
+.back {
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.back {
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+    transform-origin: center;
+}
+
+.flipper.flipped {
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+    transform-origin: center;
+}
+
+.text-verification {
+    width: calc(100% - 20px);
+    /* Adjust width to fit container */
+    height: 75px;
+    /* Reduce height */
+    margin: 0 auto 24px;
+    /* Center the text area */
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid var(--border-gray);
+    border-radius: 8px;
+    resize: none;
+    display: block;
+}
+
+.verification-input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid var(--border-gray);
+    border-radius: 8px;
+    margin: 0 auto 24px;
+    /* Center the input field */
+    display: block;
+    box-sizing: border-box;
+}
+
+.back .button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 10px;
+}
+
+.back .button-container button {
+    font-family: inherit;
+    background-color: var(--light-gray);
+    color: var(--primary-gray);
+    border: 1px solid var(--border-gray);
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.back .button-container button:hover {
+    background-color: var(--hover-gray);
+}
+
+.robot-mode-button {
+    font-family: inherit;
+    background-color: var(--light-gray);
+    color: var(--primary-gray);
+    border: 1px solid var(--border-gray);
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    margin-left: 10px;
+}
+
+.robot-mode-button:hover {
+    background-color: var(--hover-gray);
+}
+
+.robot-mode-button-back {
+    font-family: inherit;
+    background-color: var(--light-gray);
+    color: var(--primary-gray);
+    border: 1px solid var(--border-gray);
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    margin-left: 10px;
+}
+
+.robot-mode-button-back:hover {
+    background-color: var(--hover-gray);
+}
+
+.verify-button-back {
+    font-family: inherit;
+    background-color: var(--light-gray);
+    color: var(--primary-gray);
+    border: 1px solid var(--border-gray);
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    margin-top: 10px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.verify-button-back:hover {
+    background-color: var(--hover-gray);
+}
